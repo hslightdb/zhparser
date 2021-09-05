@@ -46,8 +46,8 @@ make[1]: *** [all-recursive] Error 1
 make[1]: Leaving directory `/home/zjh/scws-1.2.3'
 make: *** [all] Error 2
 
-原因是：
-解决方法：
+原因是：github上的scws在configure之前预编译存在问题。
+解决方法：从http://www.xunsearch.com/scws/down/scws-1.2.3.tar.bz2下载。
 
 注意:在FreeBSD release 10及以上版本上运行configure时，需要增加--with-pic选项。
 
