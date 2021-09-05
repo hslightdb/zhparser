@@ -66,6 +66,17 @@ make: *** [all] Error 2
 
 ```
  make && make install
+[zjh@lightdb1 zhparser-0.2.0]$ make
+gcc -std=gnu99 -Wall -Wmissing-prototypes -Wpointer-arith -Wdeclaration-after-statement -Werror=vla -Wendif-labels -Wmissing-format-attribute -Wformat-security -fno-strict-aliasing -fwrapv -fexcess-precision=standard -ggdb -O2 -fPIC -shared -o zhparser.so zhparser.o -L/home/zjh/pgsql13.2/lib    -Wl,--as-needed -Wl,-rpath,'/home/zjh/pgsql13.2/lib',--enable-new-dtags  -lscws -L/home/zjh/scws/lib -Wl,-rpath -Wl,/home/zjh/scws/lib 
+[zjh@lightdb1 zhparser-0.2.0]$ make install
+/usr/bin/mkdir -p '/home/zjh/pgsql13.2/lib'
+/usr/bin/mkdir -p '/home/zjh/pgsql13.2/share/extension'
+/usr/bin/mkdir -p '/home/zjh/pgsql13.2/share/extension'
+/usr/bin/mkdir -p '/home/zjh/pgsql13.2/share/tsearch_data'
+/usr/bin/install -c -m 755  zhparser.so '/home/zjh/pgsql13.2/lib/zhparser.so'
+/usr/bin/install -c -m 644 .//zhparser.control '/home/zjh/pgsql13.2/share/extension/'
+/usr/bin/install -c -m 644 .//zhparser--1.0.sql .//zhparser--unpackaged--1.0.sql  '/home/zjh/pgsql13.2/share/extension/'
+/usr/bin/install -c -m 644 .//dict.utf8.xdb .//rules.utf8.ini '/home/zjh/pgsql13.2/share/tsearch_data/'
 
 ```
 如果你同时安装了多个版本的PostgreSQL, 可以通过指定 PG\_CONFIG 来为指定的版本编译扩展：
