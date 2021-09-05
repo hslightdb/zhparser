@@ -17,14 +17,40 @@ zhparser支持PostgreSQL 9.2及以上版本，请确保你的PG版本符合要�
 
 ```
  wget -q -O - http://www.xunsearch.com/scws/down/scws-1.2.3.tar.bz2 | tar xf -
+ yum install libtool  # 否则libtoolize会提示命令不存在
+ cd scws-1.2.3
+ 如果是从github上下载的scws源码需要先运行以下命令生成configure文件： 
+ touch README;aclocal;autoconf;autoheader;libtoolize;automake --add-missing
 
- cd scws-1.2.3 ; ./configure ; make install
+ ./configure
+ make
+ make install
+
+注意：如果make报错，如下：
+[root@lightdb1 scws-1.2.3]# make
+make  all-recursive
+make[1]: Entering directory `/home/zjh/scws-1.2.3'
+Making all in .
+make[2]: Entering directory `/home/zjh/scws-1.2.3'
+make[2]: Leaving directory `/home/zjh/scws-1.2.3'
+Making all in libscws
+make[2]: Entering directory `/home/zjh/scws-1.2.3/libscws'
+preserve-dup-deps     --mode=compile gcc -DHAVE_CONFIG_H -I. -I..     -g -O2 -MT charset.lo -MD -MP -MF .deps/charset.Tpo -c -o charset.lo charset.c
+make[2]: execvp: preserve-dup-deps: Not a directory
+make[2]: [charset.lo] Error 127 (ignored)
+mv -f .deps/charset.Tpo .deps/charset.Plo
+mv: cannot stat ‘.deps/charset.Tpo’: No such file or directory
+make[2]: *** [charset.lo] Error 1
+make[2]: Leaving directory `/home/zjh/scws-1.2.3/libscws'
+make[1]: *** [all-recursive] Error 1
+make[1]: Leaving directory `/home/zjh/scws-1.2.3'
+make: *** [all] Error 2
+
+原因是：
+解决方法：
 
 注意:在FreeBSD release 10及以上版本上运行configure时，需要增加--with-pic选项。
 
-如果是从github上下载的scws源码需要先运行以下命令生成configure文件： 
-
- touch README;aclocal;autoconf;autoheader;libtoolize;automake --add-missing
 
 ```
 2.下载zhparser源码
