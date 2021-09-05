@@ -22,9 +22,12 @@ zhparser支持PostgreSQL 9.2及以上版本，请确保你的PG版本符合要�
  如果是从github上下载的scws源码需要先运行以下命令生成configure文件： 
  touch README;aclocal;autoconf;autoheader;libtoolize;automake --add-missing
 
- ./configure
+ ./configure  --prefix=$HOME/scws
  make
  make install
+cd
+echo "export SCWS_HOME=$HOME/scws" >> .bash_profile
+source .bash_profile
 
 注意：如果make报错，如下：
 [root@lightdb1 scws-1.2.3]# make
