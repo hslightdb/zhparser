@@ -12,6 +12,7 @@ INSTALL
 
 zhparser支持PostgreSQL 9.2及以上版本，请确保你的PG版本符合要求。 
 对于REDHAT/CentOS Linux系统，请确保安装了相关的库和头文件，一般它们在postgresql-devel软件包中。 
+注：只有master主干包含2.0的函数，直接从release下载不包含。
 
 1.安装SCWS
 
